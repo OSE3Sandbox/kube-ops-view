@@ -67,7 +67,16 @@ export default class Node extends PIXI.Graphics {
         topHandle.addChild(text)
         nodeBox.addChild(topHandle)
         nodeBox.lineStyle(2, App.current.theme.primaryColor, 1)
-        nodeBox.beginFill(App.current.theme.secondaryColor, 1)
+        filled=false
+        for (const key of Object.keys(nodeBox.node.labels).sort()) {
+            if(nodeBox.node.labels=='app')
+            {
+                nodeBox.beginFill(0x000000, 1)
+                filled=true
+
+            }
+        }
+        if (!filled) nodeBox.beginFill(App.current.theme.secondaryColor, 1)
         nodeBox.drawRect(0, 0, 105, 115)
         nodeBox.endFill()
         nodeBox.lineStyle(2, 0xaaaaaa, 1)
